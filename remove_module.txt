@@ -1,3 +1,7 @@
-git rm -r --cached incan_gold
-git commit -m 'Remove the now ignored directory"incan"'
-git push origin master
+git filter-branch --tree-filter 'rm -rf incan_gold' --prune-empty HEAD
+git for-each-ref --format="%(refname)" refs/original/ | xargs -n 1 git update-ref -d
+echo incan_gold/ >> .gitignore
+git add .gitignore
+git commit -m 'Removing incan_gold from git history'
+git gc
+git push origin master --force
