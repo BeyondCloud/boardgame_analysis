@@ -1,0 +1,3 @@
+git rm -r --cached incan_gold
+git commit -m 'Remove the now ignored directory"incan"'
+git push origin master
